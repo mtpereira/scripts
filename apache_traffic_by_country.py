@@ -32,19 +32,32 @@ def is_delta_from_now(date_string, delta):
 
 def get_country():
   """Closure for returning country name by IP. Closure used so the results are
-     cached by /24 subnet. 
+     cached by /24 subnet on a dict. Dict is initialiazed by a json file, if
+     available.
      Cache entries look like: '217.162.2' : country_name"""
-  cache = {}
+  # cache initialization
+  # file exists and has valid json struct?
+  try:
+    db = open('countries.json', 'r')
+    cache = json.load(db)
+    db.close()
+  # if not, cache is empty dict
+  except (ValueError, IOError):
+    cache = {}
   def get_country_cache(ip):
     last_dot = ip.rfind(".")
     subnetted = ip[0:last_dot + 1]
-    print subnetted
+    # cache hit?
     try: 
       return cache[subnetted]
+    # if cache miss:
     except KeyError:
+      db = open('countries.json', 'w')
       api = "http://api.hostip.info/get_json.php"
       answer = json.loads(urlopen(api + "?ip=" + ip).read())['country_name']
       cache[subnetted] = answer
+      json.dump(cache, db)
+      db.close()
       return answer
   return get_country_cache
 
