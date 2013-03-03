@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#
+
 # Manuel Tiago Pereira (mt.pereira@gmail.com)
 #
 # Receives Apache common log files, either by stdin or by argument (file name)
@@ -37,7 +37,8 @@ def get_country():
   cache = {}
   def get_country_cache(ip):
     last_dot = ip.rfind(".")
-    subnetted = ip[0:last_dot]
+    subnetted = ip[0:last_dot + 1]
+    print subnetted
     try: 
       return cache[subnetted]
     except KeyError:
