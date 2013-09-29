@@ -1,0 +1,4 @@
+#!/bin/sh
+
+/usr/bin/i3lock --no-unlock-indicator --pointer win --image ~/.i3-lock-background
+
