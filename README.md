@@ -8,11 +8,11 @@ Miscellaneous usefull scripts.
   "Forked" from http://sam.nipl.net/code/nipl-tools/bin/fattag
 
   Usage: ./fattag.sh device label
-  
+
 - **i3-exit**:
   Script that presents a dialog for logging out and related tasks.
   Modified from https://github.com/uranix/i3-settings/blob/master/i3-exit.
-    
+
 - **i3lock**:
   Wrapper for i3lock, to run with specific options.
 
@@ -34,3 +34,12 @@ Miscellaneous usefull scripts.
 
   Usage: ./todo.sh -r | -w
 
+- **ansible-dirs.py**:
+  Create ansible playbook dir tree.
+  Depends on docopt and sh.
+
+  Usage: ansible-dirs [-h] (playbook | role) <name> ...
+
+  Options:
+    -h --help     show this help message and exit
+    -v --verbose  verbose mode
