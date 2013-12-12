@@ -16,8 +16,8 @@ def create_playbook(books, play="site.yml"):
         mkdir(book + "/host_vars")
         mkdir(book + "/group_vars")
         mkdir(book + "/roles")
-        touch(book + play)
-        touch(book + "README.md")
+        touch(book + "/" + play)
+        touch(book + "/" + "README.md")
 
 def create_role(roles):
     for role in roles:
