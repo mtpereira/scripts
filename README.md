@@ -38,8 +38,10 @@ Miscellaneous usefull scripts.
   Create ansible playbook dir tree.
   Depends on docopt and sh.
 
-  Usage: ansible-dirs [-h] (playbook | role) <name> ...
+  Usage: ansible-dirs \[-h\] (playbook | role) <name> ...
 
   Options:
-    -h --help     show this help message and exit
-    -v --verbose  verbose mode
+  
+    \-h --help     show this help message and exit
+    
+    \-v --verbose  verbose mode
