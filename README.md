@@ -50,5 +50,6 @@ Miscellaneous usefull scripts.
   Simple script for converting an HTML entities file to an ASCII file,
   taking into account its encoding.
 
-  Usage: ./convert_ascii_html.py <file> <file-encoding>
-         ./convert_ascii_html.py <file< $(file -i <file> | cut -d'=' -f2)
+  Usage: \./convert_ascii_html.py \<file\> \<file-encoding\>
+  
+  Usage: \./convert_ascii_html.py \<file\> $(file -i \<file\> | cut -d'=' -f2)
