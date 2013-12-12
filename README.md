@@ -45,3 +45,10 @@ Miscellaneous usefull scripts.
     \-h --help     show this help message and exit
     
     \-v --verbose  verbose mode
+
+- **convert_html_ascii.py**:
+  Simple script for converting an HTML entities file to an ASCII file,
+  taking into account its encoding.
+
+  Usage: ./convert_ascii_html.py <file> <file-encoding>
+         ./convert_ascii_html.py <file< $(file -i <file> | cut -d'=' -f2)
