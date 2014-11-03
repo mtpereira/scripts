@@ -53,3 +53,9 @@ Miscellaneous usefull scripts.
   Usage: \./convert_ascii_html.py \<file\> \<file-encoding\>
   
   Usage: \./convert_ascii_html.py \<file\> $(file -i \<file\> | cut -d'=' -f2)
+
+- **music_video.py**:
+  Create a music video from an audio file and an image file.
+  Using http://zulko.github.io/moviepy/.
+
+  Usage: ```./music_video.py <audio_file> <image_file> <output_file>```
