@@ -40,6 +40,7 @@ blackbox_install() {
 
   echo "Installing blackbox..."
   git clone https://github.com/StackExchange/blackbox ${tmpdir}
+  echo "Enter your sudo password for copying blackbox to /usr/local/bin..."
   sudo cp ${tmpdir}/bin/*.sh ${tmpdir}/bin/blackbox_* /usr/local/bin/
   rm -rf ${tmpdir}
 }
