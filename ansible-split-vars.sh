@@ -10,7 +10,7 @@ split() {
     # Initialize files with the correct name and with YAML header.
     # $filename has each unique non-blank non-header line that begins with a word.
     # This will be the filename for storing variables of the corresponding role.
-    for filename in $(grep -v -E "^$" ${file} | grep -v -- "---" | grep -E -o '^[a-z]+' | uniq); do
+    for filename in $(grep -v -E "^$" ${file} | grep -v -E -- "^---\s*$" | grep -E -o '^[a-z0-9]+' | uniq); do
         [ -f ${filename} ] || echo '---' > ${filename}.yml
     done
 
@@ -18,16 +18,18 @@ split() {
     # Get each non-header file into $line.
     # Store current state in $match, for knowing where to write.
     # Update it when we hit a non-blank line different then the current match.
-    grep -v -- '---' ${file} | while IFS= read -r line; do
+    grep -v -E -- '^---\s*$' ${file} | while IFS= read -r line; do
         set +e
-        current_match=$(echo "${line}" | grep -o -E '^#?[a-z]+')
+        current_match=$(echo "${line}" | grep -o -E '^#?[a-z0-9]+')
         # remove '#' if present
         current_match=${current_match/\#/}
         set -e
         if [ "${current_match}" != "" ] && [ "${current_match}" != "${match}" ]; then
             match="${current_match}"
         fi
-        echo "${line}" >> "${match}".yml
+        if [ "${match}" != "" ]; then
+            echo "${line}" >> "${match}".yml
+        fi
     done
 }
 
@@ -46,6 +48,7 @@ main() {
         cp "${file}" "${filename}"
         cd "${filename}"
         split "${file}"
+        rm "${file}"
         cd -
     fi
 }
